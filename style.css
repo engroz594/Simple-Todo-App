@@ -1,0 +1,127 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    color: white;
+    height: 100%;
+    padding: 20px;
+    background-size: cover;
+    background: url("https://bookinmotion.com/mockups/multipurpose-book-mockup-2/background.jpg") no-repeat center;
+}
+
+.wrapper {
+    width: 50%;
+    padding: 10px;
+    margin: 0 auto;
+    height: 100%;
+}
+
+.wrapper h1 {
+    font-size: 2rem;
+    letter-spacing: 1.4px;
+}
+
+.wrapper h2 {
+    font-size: 1.8rem;
+    text-align: center;
+    color: #ffffff;
+}
+
+.title {
+    text-align: center;
+    padding: 5px;
+}
+
+.text-box p {
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: white;
+}
+
+.add-todos {
+    width: 90%;
+    margin: 10px auto;
+    text-align: center;
+}
+
+input {
+    width: 80%;
+    height: 50px;
+    padding: 20px;
+}
+
+.toggle {
+    text-decoration: line-through;
+}
+
+.btn {
+    margin: 4px;
+    font-weight: 500;
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+
+.add-btn {
+    width: 15%;
+    padding: 5px;
+    height: 50px;
+}
+
+.add-btn span {
+    opacity: 0;
+    color: dodgerblue;
+}
+
+.add-btn:hover span {
+    padding: 4px;
+    opacity: 1;
+}
+
+#toggleall-button {
+    color: #193946;
+    background-image: none;
+    background-color: white;
+}
+
+.toggleButton {
+
+}
+
+.todo-list {
+    list-style-type: none;
+    padding-bottom: 30px;
+}
+
+.todo-list li {
+    margin: 6px;
+    padding: 0px 10px;
+    font-size: 1rem;
+    border: 1px solid white;
+    color: black;
+    background-color: #ffffff;
+    clear: both;
+    overflow: hidden;
+}
+
+.todo-list i {
+    padding: 0 4px;
+    vertical-align: middle;
+}
+
+.todo-list i.deleteButton  {
+    color: red;
+}
+
+.todo-list i.toggleButton  {
+    color: forestgreen;
+}
+
+.todo-list i:hover {
+    cursor: pointer;
+}

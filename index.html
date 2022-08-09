@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Todo List</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<div class="wrapper">
+    <h1 class="title">ToDo App</h1>
+
+    <div class="text-box">
+        <p>
+            Get Organized with your all Day Activities. Start Using TODO App today!
+        </p>
+    </div>
+
+    <div class="add-todos">
+        <input class="" id="addTodoTextInput" type="text" placeholder="Write To Do Here!"/>
+        <button class="add-btn btn" onclick="handlers.addTodo()">Add</button>
+    </div>
+
+    <div class="tasks-header">
+        <h2>ToDo's</h2>
+    </div>
+
+    <ul class="todo-list"> <!-- li elements will be appended here -->
+    </ul>
+
+</div> <!-- end of wrapper -->
+
+<script type="text/javascript">
+
+    /*
+    * Function to create Check and delete button on Todo
+    */
+    function createButton(buttonType) {
+        var Button = document.createElement('button');
+        if (buttonType === "toggle") {
+            Button.className = 'toggleButton btn far fa-check-circle';
+            Button.textContent  = 'Toggle';
+        } else {
+            Button.className = 'deleteButton far fa-trash-alt';
+          Button.textContent  = 'Delete';
+        }
+        return Button;
+    }
+
+
+    /*
+    * Function to display to do when created
+    */
+    function displayTodos() {
+        var todosUl = document.querySelector('ul');
+        todosUl.innerHTML = '';
+
+        todoList.todos.forEach(function (todo, position) {
+            var todoLi = document.createElement('li');
+            var todoTextWithCompletion = '';
+
+            todoTextWithCompletion = todo.todoText;
+
+            if (todo.completed === true) {
+                todoLi.classList.toggle('toggle');
+            } else {
+            }
+
+            todoLi.id = position;
+            todoLi.textContent = todoTextWithCompletion;
+            todoLi.appendChild(createButton('toggle'));
+            todoLi.appendChild(createButton("delete"));
+            todosUl.appendChild(todoLi);
+        }, this);
+    }
+
+    /*
+    * Class to maintain todo's and functionality
+    */
+    class TodoList {
+        todos = [];
+
+        addTodo(todoText) {
+            this.todos.push({
+                todoText: todoText,
+                completed: false
+            });
+        }
+
+        deleteTodo(position) {
+            this.todos.splice(position, 1);
+        }
+
+        toggleCompleted(position) {
+            var todo = this.todos[position];
+            todo.completed = !todo.completed;
+        }
+
+        setUpEventListeners() {
+            var todosUl = document.querySelector('ul');
+            todosUl.addEventListener('click', function (event) {
+                var elementClicked = event.target;
+
+                if (elementClicked.className.includes('toggleButton btn')) {
+                    handlers.toggleCompleted(parseInt(elementClicked.parentNode.id));
+                } else if (elementClicked.className.includes('deleteButton far fa-trash-alt')) {
+                    handlers.deleteTodo(parseInt(elementClicked.parentNode.id));
+                }
+            });
+        }
+    }
+
+    var handlers = {
+        addTodo: function () {
+            var addTodoTextInput = document.getElementById('addTodoTextInput');
+            if (addTodoTextInput.value.length > 0) {
+                todoList.addTodo(addTodoTextInput.value);
+                addTodoTextInput.value = '';
+                displayTodos();
+            }
+        },
+        deleteTodo: function (position) {
+            todoList.deleteTodo(position);
+            displayTodos();
+        },
+        toggleCompleted: function (position) {
+            todoList.toggleCompleted(position);
+            displayTodos();
+        }
+    };
+
+    let todoList = new TodoList();
+    todoList.setUpEventListeners();
+</script>
+</body>
+</html>
